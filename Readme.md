@@ -91,11 +91,15 @@ Aucune difficulté particulière dans le câblage, chaque LED étend allumée l'
 
 Afin de développer en langage C, compiler et transférer nos prochains codes sources sur notre carte MCU, nous utiliserons l'IDE VSCode avec l'extension [PlatformIO] .
 
+**Codes Sources**
+
+L'ensemble des codes sources décrits ci-après se trouvent dans le dossier [./src] de ce même dépôt.
+
 ___
 
 ## 01_BASIC_BOUCLE_FOR
 
-*(code dans le dossier /src)*
+[Fichier source](./src/01_Basic_Boucle-For.cpp)
 
 Rien de compliqué pour commencer, 
 - Une boucle `for` dans le `setup()` afin d'initialiser les broches du MCU en `Sortie` où sont branchées les LEDs.
@@ -261,3 +265,4 @@ Par conséquent, pour compiler un autre programme, vous devrez préciser le nom 
 [PINOUT]:          assets/pinout_328P.pdf
 [digitalWrite()]:  https://garretlab.web.fc2.com/en/arduino/inside/hardware/arduino/avr/cores/arduino/wiring_digital.c/digitalWrite.html
 [PlatformIO]:      https://platformio.org/?utm_source=platformio&utm_medium=piohome
+[./src]:             src/
