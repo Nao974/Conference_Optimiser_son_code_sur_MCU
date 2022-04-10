@@ -158,6 +158,8 @@ ___
 
 ## 02_MILLIS
 
+[Fichier source](./src/02_Millis.cpp)
+
 la fonction `millis()` retourne le nombre de millisecondes écoulées depuis le démarrage/reset de la carte, il suffit de le comparer avec celui de notre derniere action sur le chenillard, si l'intervalle est >75ms alors nous passons à la LED suivante, nous remplaçons donc notre fonction bloquante par une condition.
 
 C'est beaucoup mieux,
@@ -170,6 +172,8 @@ C'est beaucoup mieux,
 ___
 
 ## 03_MILLIS+PORTD
+
+[Fichier source](./src/03_Millis+PortD.cpp)
 
 **Attention**, nous entamons notre descente au cœur  du MCU, le code va devenir spécialisé pour notre µcontroleur Atmel 328P, et ne sera donc plus portable avec d'autres cartes. Nous allons également nous éloigner du framework `Arduino`.
 
@@ -210,6 +214,9 @@ Je vous laisse découvrir ce qui se cache derrière la fonction [digitalWrite()]
 ___
 
 ## 04_PORTD+TIMER
+
+[Fichier source](./src/04_PortD%2BTIMER.cpp) 
+
 C'est super, notre code est 40 fois plus rapide qu'au début, sans fonction bloquante.... Mais que se passera-t-il si mes différentes fonctions de ma boucle principale (lecture des capteurs, machine à état, etc...) durent plus 75 ms...
 Vous pouvez faire le test en rajoutant un `delay(1500);` en fin du `loop()` dans le précèdent exercice.
 
