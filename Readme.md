@@ -28,7 +28,7 @@ Par exemple le MCU Atmel 328P de la carte Arduino est cadencé à 16Mhz et n'a q
 
  Afin d'imager la contrainte de Réactivité, prenons l'exemple d'un véhicule autonome avec le châssis Maqueen et une carte Micro:bit.
 
-Nous le programmons dans un 1er temps avec un code simple avec MakeCode, en fonction de 2 capteurs infra-rouge placés dessous à l'avant, nous commandons les moteurs afin de suivre une piste noire : 
+Nous le programmons dans un 1er temps avec un code simple sur MakeCode, en fonction de 2 capteurs infra-rouge placés dessous à l'avant, nous commandons les moteurs afin de suivre une piste noire : 
 
 <p >
     <img src="assets/img_video_suiveur_ligne_simple.jpg"  width="75%" alt="Code Suivi ligne avec capteur distance US">
@@ -82,8 +82,14 @@ Ecrire le code d'un chenillard avec 8 Leds. Ce code devra être léger et ne dev
 Afin de simplifier le code, l'animation ne se fera que dans un sens (pas d'aller-retour).
 
 **Schéma de Câblage**
+
 <p> <img src="assets/cablage.png"  alt="Câblage" width="75%"> </p>
-Aucune difficulté particulière dans le câblage, chaque LED étend allumée l'une après l'autre, nous pouvons prendre le 5V directement à chaque broche du MCU.
+
+Aucune difficulté particulière dans le câblage, chaque LED étend allumée l'une après l'autre, nous pouvons prendre le 5V directement à chaque broche du MCU. 
+
+**Outil de Développement**
+
+Afin de développer en langage C, compiler et transférer nos prochains codes sources sur notre carte MCU, nous utiliserons l'IDE VSCode avec l'extension [PlatformIO] .
 
 ___
 
@@ -254,3 +260,4 @@ Par conséquent, pour compiler un autre programme, vous devrez préciser le nom 
 [Atmel 328P]:      https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf
 [PINOUT]:          assets/pinout_328P.pdf
 [digitalWrite()]:  https://garretlab.web.fc2.com/en/arduino/inside/hardware/arduino/avr/cores/arduino/wiring_digital.c/digitalWrite.html
+[PlatformIO]:      https://platformio.org/?utm_source=platformio&utm_medium=piohome
