@@ -239,7 +239,7 @@ ___
 
 Voilà, nous avons maintenant un code très performant, sans fonction bloquante, dont le déclenchement n'est plus lié à la boucle principale.
 
-Nous n'utilisons plus aucune fonction du framework Arduino, par contre ce code est maintenant spécifique à un seul micro contrôleur.
+Nous n'utilisons plus de fonctions *gourmantes* du framework Arduino, par contre ce code est maintenant spécifique à un seul micro contrôleur.
 
 **Bon code à tous !**
 ___
