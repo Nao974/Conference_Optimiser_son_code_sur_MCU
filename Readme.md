@@ -165,7 +165,7 @@ la fonction `millis()` retourne le nombre de millisecondes écoulées depuis le 
 C'est beaucoup mieux,
 
 - Plus de fonction bloquante 
-- Code portable sur différents MPU
+- Code portable sur différents MCU
 
 *Mais nous pouvons l'optimiser afin de prendre beaucoup moins de cycle d'horloge pour notre chenillard.*
 
@@ -244,9 +244,25 @@ Nous n'utilisons plus de fonctions *gourmandes* du framework Arduino, par contre
 **Bon code à tous !**
 ___
 
+## Bonus : 05_FreeRTOS
+
+[Fichier source](./src/05_FreeRTOS.cpp) 
+
+Les microcontrôleurs sont de plus en plus puissants, et il existe aujourd'hui des systèmes d'exploitation temps réel (RTOS) permettant d'effectuer du [multitâche préemptif](https://fr.wikipedia.org/wiki/Multit%C3%A2che_pr%C3%A9emptif) sur systèmes embarqués.
+
+La société Espressif, fabriquant du célèbre ESP32, utilise un RTOS open-source appelé [FreeRTOS](https://www.freertos.org/) pour ses microcontrôleurs. Il est intégré automatiquement dans les projets PlatformIO utilisant le framework Arduino de maniere transparente afin de gérer les différentes tâches d'arrière-plan du système (wifi, bluetooth, etc...) ainsi que votre code.
+
+Ma carte de test est une [Adafruit QTPY ESP32-S2](https://learn.adafruit.com/adafruit-qt-py-esp32-s2) contenant une LED NeoPixel, et le code source est facilement adaptable à d'autres cartes ESP32.
+
+Ce dernier code source créé 2 tâches concurrentes, avec le clignotement d'une LED sur une premiere tâche, et l'affichage d'un message sur le moniteur série dans une seconde tâche.
+
+Je vous invite à tester ce code, et à faire vos propres tests en créant d'autres tâches, en modifiant les priorités, etc... afin de mieux comprendre le fonctionnement d'un RTOS.
+
+Une simple remarque sur l'emprunte mémoire, notre code 03_PortD+TIMER utilise 11 octets de RAM, alors que ce code 05_FreeRTOS utilise 26Ko de RAM, je vous laisse faire le ratio.
+
 ## Organisation des codes sources
 
-Chaque exercice proposé correspond à un programme Arduino indépendant des autres exercices. Néanmoins, pour ne pas avoir à gérer autant de projets PlatformIO qu'il y'a d'exercices, on peut s'arranger pour tous les faire coexister au sein d'un même projet. 
+A chaque étape proposée correspond  un programme indépendant. Pour ne pas avoir à gérer autant de projets PlatformIO qu'il y'a d'exemples, on peut s'arranger pour tous les faire coexister au sein d'un même projet. 
 
 Chaque exercice est traité dans un fichier source portant l'extension `.cpp` et stocké dans le dossier `src`. Par défaut, PlatformIO se charge de compiler tous les fichiers sources qu'il trouve dans le dossier `src`, et notamment le traditionnel `main.cpp`. Aussi, pour modifier ce comportement, il existe une directive très pratique à insérer dans le fichier `platformio.ini` qui va nous permettre d'indiquer précisément ce qu'il faut compiler ou non. Par exemple, si l'on souhaite compiler le programme décrit dans le fichier `01_Basic_Boucle-For.cpp`, et uniquement celui-là, il suffira de le spécifier à l'aide de la directive `src_filter` de la manière suivante :
 
@@ -260,9 +276,16 @@ src_filter = -<*> +<01_Basic_Boucle-For.cpp>
 
 Ici on construit une liste de fichiers à compiler, en commençant par exclure tous les fichiers se trouvant dans le dossier `src` avec la balise `-<*>`, puis en insérant le seul fichier `01_Basic_Boucle-For.cpp` que l'on souhaite compiler avec la balise `+<01_Basic_Boucle-For.cpp>`.
 
-Par conséquent, pour compiler un autre programme, vous devrez préciser le nom du fichier correspondant avec la balise appropriée. Chaque fichier solution est spécifique et indépendant des autres. Vous ne pouvez donc en compiler qu'un seul à la fois.
+Par conséquent, pour compiler un autre programme, vous devrez préciser le nom du fichier correspondant avec la balise appropriée. Chaque fichier est spécifique et indépendant des autres. Vous ne pouvez donc en compiler qu'un seul à la fois.
 
-*Reportez-vous à la documentation officielle de PlatformIO pour plus de détails sur [la directive `src_filter`][src-filter].*
+*Reportez-vous à la documentation officielle de PlatformIO pour plus de détails sur la directive [`build_src_filter`][src-filter].*
+
+D'autre part, le dernier exemple `05_FreeRTOS.cpp` est conçu pour être compilé et exécuté sur une carte ESP32, tandis que les autres exemples sont destinés à être utilisés avec une carte Arduino Uno. Par conséquent, il est nécessaire de choisir l'enviremmentpar défaut dans la section :
+
+```ini
+[platformio]
+default_envs = uno ; adafruit_qtpy_esp32s2 // uno ; 
+```
 
 [EPITECH Réunion]: https://www.epitech.eu/fr/ecole-informatique-la-reunion
 [Robotic974]:      https://www.facebook.com/robotic974
@@ -273,3 +296,4 @@ Par conséquent, pour compiler un autre programme, vous devrez préciser le nom 
 [digitalWrite()]:  https://garretlab.web.fc2.com/en/arduino/inside/hardware/arduino/avr/cores/arduino/wiring_digital.c/digitalWrite.html
 [PlatformIO]:      https://platformio.org/?utm_source=platformio&utm_medium=piohome
 [./src]:             src/
+[src-filter]:       https://docs.platformio.org/en/latest/projectconf/sections/env/options/build/build_src_flags.html

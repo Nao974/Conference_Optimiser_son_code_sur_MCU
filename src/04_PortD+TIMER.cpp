@@ -24,18 +24,22 @@ void setup() {
 
 		// Autorisatiion de l'interruption sur comparateur A
 		TIMSK2 = B00000010; //OCIE2A = 1 et désactivation autres interruptions du TIMER2
-    	OCR2A = 250; // Initialisation du comparateur 1 pour compter 250 tics => 4µs * 250 * 125 => 75 ms
+		OCR2A = 250; // Initialisation du comparateur 1 pour compter 250 tics
+
+		// 1 tic toutes 4 µs, il faudra donc 18750 tics pour atteindre 75 ms
+		// registre 8 bits => 256 tics max, il faut donc trouver un diviseur
+		// 18750 / 250 = 75 (nbre rond)
+		// Donc un Tac tous les 250 tics = 1ms
+		// il faudra compter 75 tacs pour atteindre 75 ms
 
 	sei(); // Relance des Interruptions
-
-
 
 }
 
 // Vecteur d'interruption sur comparateur A
 ISR(TIMER2_COMPA_vect) {
-
-	// 4µs * 250 * 125 => 75 ms
+	// Appel de la fonction d'interruption à chaque débordement de OCR2A = 4µs * 250 = 1ms
+	// Décallage tous les 75 débordements pour atteindre 75ms
 	if ( ++compteurTimer >= 75 ) {
 		/* Le port D est une image de notre chenillard, chaque bit représente une Led
 			Nous décalons à chaque itération d'un bit permettant de passer à la Led suivante
@@ -54,7 +58,7 @@ ISR(TIMER2_COMPA_vect) {
 void loop() {
 
 	// Lecture des Capteurs
-
+	delay(1500);
 	// Machine à état: état précedent + Capteurs => prochain état
 
 	// Commandes des Actionneurs suivant nouvel état

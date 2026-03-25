@@ -2,7 +2,7 @@
 
 const uint8_t NB_LED = 8;
 
-uint8_t pinLed[] = {0, 1, 2, 3, 4, 5, 6, 7};
+const uint8_t pinLed[] = {0, 1, 2, 3, 4, 5, 6, 7};
 uint8_t led = 0;
 
 uint32_t lastMillis = 0;

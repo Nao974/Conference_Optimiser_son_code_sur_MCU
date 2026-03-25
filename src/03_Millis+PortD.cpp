@@ -28,7 +28,7 @@ void loop() {
   }
 
 	// Lecture des Capteurs
-
+  	delay(1500);
 	// Machine à état: état précedent + Capteurs => prochain état
 
 	// Commandes des Actionneurs suivant nouvel état
