@@ -1,6 +1,6 @@
 # Codes sources de la conférence : Optimiser son code sur µControleur
 
-Conférence présentée par [Nao974] pour [Robotic974] chez [EPITECH Réunion] le 25/03/2022 en présence des étudiants de 1ere à 3eme année.
+Conférence présentée par [Nao974] pour [Robotic974] chez [EPITECH Réunion] en présence des étudiants de 1ere à 3eme année.
 
 Ce dépôt reprend les grandes lignes de la conférence et les différents codes sources présentés.
 
